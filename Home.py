@@ -31,21 +31,14 @@ def generate_pdf(sections):
     doc = fitz.open()
 
     # Define the style for the section headings and text
-    style_heading = "<style>\nh1 {font-family: Arial, sans-serif; font-size: 20pt; font-weight: bold; color: #000000;}\n</style>"
-    style_text = "<style>\np {font-family: Arial, sans-serif; font-size: 12pt; color: #000000;}\n</style>"
+    style_heading = "<style>\nh1 {font-family: Arial, sans-serif; font-size: 20pt; font-weight: bold; color: #000000; margin-bottom: 20px;}\n</style>"
+    style_text = "<style>\np {font-family: Arial, sans-serif; font-size: 12pt; color: #000000; margin-top: 10px;}\n</style>"
 
     # Define the page template for each section
     template = style_heading + style_text + "<h1>{}</h1><p>{}</p>"
 
-    # Add table of contents page
-    toc_page = doc.new_page()
-    toc_page.insert_text(fitz.Point(50, 100), "Table of Contents")
-    toc_page_number = 0
-
     # Add a new page for each section
-    for i, section in enumerate(sections):
-        # Keep track of page numbers for each section
-        page_number = i + 1
+    for section in sections:
 
         if ":" in section:
             heading, text = section.split(":", 1)
@@ -56,26 +49,17 @@ def generate_pdf(sections):
         page = doc.new_page()
 
         # Draw the section heading and text on the page
-        p1 = fitz.Point(50, 100)
-        p2 = fitz.Point(50, 150)
+        p1 = fitz.Point(50, 50)
+        p2 = fitz.Point(50, 100)
         page.insert_text(p1, heading)
         page.insert_text(p2, text)
-
-        # Add link to section in table of contents
-        toc_link = f"#{page_number}"
-        toc_entry = f"{heading} (page {page_number})"
-        toc_page.insert_link(fitz.Rect(50, 200 + i * 50, 550, 230 + i * 50),  text=toc_entry)
-
-        # Add link to table of contents on section pages
-        toc_page_link = f"#0"
-        toc_page_entry = "Table of Contents"
-        page.insert_link(fitz.Rect(50, 50, 200, 80), text=toc_page_entry)
 
     # Save the document to a buffer
     buffer = io.BytesIO()
     doc.save(buffer)
-    
+
     return buffer
+
 
 
 
