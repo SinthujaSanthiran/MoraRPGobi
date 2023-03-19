@@ -80,7 +80,7 @@ def generate_text(input, source):
 # Define the expandable widgets
 def app():
     # Set the app title
-    st.title("Toursim Data Analytics MORA RP")
+    st.title("Tourism Analytics for promotion of SME Businesses")
 
     widget1 = st.expander("Tourism Reviews")
     widget2 = st.expander("Price forecasting")
