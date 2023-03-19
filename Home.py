@@ -19,8 +19,8 @@ st.markdown(
 # Initialize session state
 if "widget_outputs" not in st.session_state:
     st.session_state.widget_outputs = {
-        "Widget 1": "",
-        "Widget 2": "",
+        "Tourism Reviews": "",
+        "Price forecasting": "",
         "Widget 3": "",
         "Widget 4": "",
     }
@@ -86,8 +86,8 @@ def app():
     # Set the app title
     st.title("Toursim Data Analytics MORA RP")
 
-    widget1 = st.expander("Widget 1")
-    widget2 = st.expander("Widget 2")
+    widget1 = st.expander("Tourism Reviews")
+    widget2 = st.expander("Price forecasting")
     widget3 = st.expander("Widget 3")
     widget4 = st.expander("Widget 4")
 
@@ -96,7 +96,7 @@ def app():
     submit = st.sidebar.button("Submit")
 
     # Define the widget selection drop-down
-    widget_select = st.sidebar.selectbox("Select a widget", ["Widget 1", "Widget 2", "Widget 3", "Widget 4"])
+    widget_select = st.sidebar.selectbox("Select a widget", ["Tourism Reviews", "Price forecasting", "Widget 3", "Widget 4"])
 
     # Generate text and display in the selected widget
     if submit:
@@ -107,15 +107,15 @@ def app():
             st.session_state.widget_outputs[widget_select] = output
 
             # Update all the widget outputs
-            widget1.write(st.session_state.widget_outputs["Widget 1"])
-            widget2.write(st.session_state.widget_outputs["Widget 2"])
+            widget1.write(st.session_state.widget_outputs["Tourism Reviews"])
+            widget2.write(st.session_state.widget_outputs["Price forecasting"])
             widget3.write(st.session_state.widget_outputs["Widget 3"])
             widget4.write(st.session_state.widget_outputs["Widget 4"])
 
     # Collect the outputs of all the widgets into a list
     widget_outputs = [
-        st.session_state.widget_outputs["Widget 1"],
-        st.session_state.widget_outputs["Widget 2"],
+        st.session_state.widget_outputs["Tourism Reviews"],
+        st.session_state.widget_outputs["Price forecasting"],
         st.session_state.widget_outputs["Widget 3"],
         st.session_state.widget_outputs["Widget 4"],
     ]
