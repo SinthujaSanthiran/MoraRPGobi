@@ -68,7 +68,8 @@ def generate_pdf(sections):
 
 
 
-def generate_text(input):
+def generate_text(input, source):
+    input = str(source) + "  :"+ str(input)
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=input,
@@ -92,16 +93,17 @@ def app():
     widget4 = st.expander("Widget 4")
 
     # Define the query text area and submit button
+    source = st.sidebar.text_input("Source", key="source")
     query = st.sidebar.text_area("Ask Something", key="query")
     submit = st.sidebar.button("Submit")
 
     # Define the widget selection drop-down
     widget_select = st.sidebar.selectbox("Select a widget", ["Tourism Reviews", "Price forecasting", "Widget 3", "Widget 4"])
-
+    
     # Generate text and display in the selected widget
     if submit:
         with st.spinner('Generating...'):
-            output = generate_text(query)
+            output = generate_text(query, source)
 
             # Update the selected widget output in session state
             st.session_state.widget_outputs[widget_select] = output
