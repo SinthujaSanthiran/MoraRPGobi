@@ -31,8 +31,8 @@ def generate_pdf(sections):
     doc = fitz.open()
 
     # Define the style for the section headings and text
-    style_heading = "<style>\nh1 {font-family: Arial, sans-serif; font-size: 20pt; font-weight: bold; color: #000000; margin: 20px;}\n</style>"
-    style_text = "<style>\np {font-family: Arial, sans-serif; font-size: 12pt; color: #000000; margin: 10px;}\n</style>"
+    style_heading = "<style>\nh1 {font-family: Arial, sans-serif; font-size: 20pt; font-weight: bold; color: #000000; margin-right: 200px;}\n</style>"
+    style_text = "<style>\np {font-family: Arial, sans-serif; font-size: 22pt; color: #000000; margin-right: 200px;}\n</style>"
 
     # Define the page template for each section
     template = style_heading + style_text + "<h1>{}</h1><p>{}</p>"
