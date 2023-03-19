@@ -64,12 +64,12 @@ def generate_pdf(sections):
         # Add link to section in table of contents
         toc_link = f"#{page_number}"
         toc_entry = f"{heading} (page {page_number})"
-        toc_page.insert_link(fitz.Rect(50, 200 + i * 50, 550, 230 + i * 50), uri=toc_link, text=toc_entry)
+        toc_page.insert_link(fitz.Rect(50, 200 + i * 50, 550, 230 + i * 50),  text=toc_entry)
 
         # Add link to table of contents on section pages
         toc_page_link = f"#0"
         toc_page_entry = "Table of Contents"
-        page.insert_link(fitz.Rect(50, 50, 200, 80), uri=toc_page_link, text=toc_page_entry)
+        page.insert_link(fitz.Rect(50, 50, 200, 80), text=toc_page_entry)
 
     # Save the document to a buffer
     buffer = io.BytesIO()
