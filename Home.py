@@ -25,6 +25,7 @@ if "widget_outputs" not in st.session_state:
         "Widget 4": "",
     }
 
+
 def generate_pdf(sections):
     # Create a new PDF document
     doc = fitz.open()
@@ -36,15 +37,21 @@ def generate_pdf(sections):
     # Define the page template for each section
     template = style_heading + style_text + "<h1>{}</h1><p>{}</p>"
 
+    # Add table of contents page
+    toc_page = doc.new_page()
+    toc_page.insert_text(fitz.Point(50, 100), "Table of Contents")
+    toc_page_number = 0
+
     # Add a new page for each section
-    for section in sections:
+    for i, section in enumerate(sections):
+        # Keep track of page numbers for each section
+        page_number = i + 1
 
         if ":" in section:
-
             heading, text = section.split(":", 1)
         else:
-            
             heading, text = section, ""
+
         # Create a new page
         page = doc.new_page()
 
@@ -54,16 +61,20 @@ def generate_pdf(sections):
         page.insert_text(p1, heading)
         page.insert_text(p2, text)
 
+        # Add link to section in table of contents
+        toc_link = f"#{page_number}"
+        toc_entry = f"{heading} (page {page_number})"
+        toc_page.insert_link(fitz.Rect(50, 200 + i * 50, 550, 230 + i * 50), uri=toc_link, text=toc_entry)
+
+        # Add link to table of contents on section pages
+        toc_page_link = f"#0"
+        toc_page_entry = "Table of Contents"
+        page.insert_link(fitz.Rect(50, 50, 200, 80), uri=toc_page_link, text=toc_page_entry)
+
     # Save the document to a buffer
     buffer = io.BytesIO()
     doc.save(buffer)
-
-    # Close the document
-    doc.close()
-
-    # Set the buffer position to the beginning
-    buffer.seek(0)
-
+    
     return buffer
 
 
