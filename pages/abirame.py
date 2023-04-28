@@ -47,5 +47,13 @@ else:
 if st.button("create Index "):
     documents = SimpleDirectoryReader('data').load_data()
     index = GPTSimpleVectorIndex.from_documents(documents)
+    index.save_to_disk('index.json')
+    index = GPTSimpleVectorIndex.load_from_disk('index.json')
+    st.info("Index created")
+
+
+
+if st.button("Show metrics"):
+
     response = index.query("based on the popular times what is the expected user count during the spring season")
-    st.write(response)
+    st.write(response.response)
