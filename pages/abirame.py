@@ -34,7 +34,7 @@ keyword = st.text_input("Enter a keyword:", "")
 
 if st.button("Search and Save"):
     st.write("Searching for businesses related to:", keyword)
-    search_query = f"{keyword} site:google.com/maps"
+    search_query = f"{keyword}"
 
     results = google_search(search_query)
     business_data = []
