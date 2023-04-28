@@ -57,5 +57,5 @@ if st.button("create Index "):
 
 if st.button("Show metrics"):
 
-    response = st.session_state.index.query("based on the popular times what is the expected user count during the spring season")
+    response = st.session_state.index.query("what are the popular times for most of the businesses")
     st.write(response.response)
