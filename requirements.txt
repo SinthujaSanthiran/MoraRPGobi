@@ -1,3 +1,6 @@
 streamlit
 openai
 PyMuPdf
+googlesearch-python
+beautifulsoup4
+llama-index
