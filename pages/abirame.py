@@ -7,23 +7,23 @@ from bs4 import BeautifulSoup
 
 def google_search(query):
     search_results = []
-    for url in search(query, num_results=20):
+    for url in search(query,sleep_interval=5, num_results=20):
         search_results.append(url)
     return search_results
 
-def extract_business_data(url):
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, "html.parser")
+# def extract_business_data(url):
+#     response = requests.get(url)
+#     soup = BeautifulSoup(response.content, "html.parser")
 
-    business_name = soup.find("h1", class_="section-hero-header-title-title").get_text(strip=True) if soup.find("h1", class_="section-hero-header-title-title") else None
-    business_rating = soup.find("span", class_="section-star-display").get_text(strip=True) if soup.find("span", class_="section-star-display") else None
-    business_reviews = soup.find("button", class_="section-reviewchart-numreviews").get_text(strip=True) if soup.find("button", class_="section-reviewchart-numreviews") else None
+#     business_name = soup.find("h1", class_="section-hero-header-title-title").get_text(strip=True) if soup.find("h1", class_="section-hero-header-title-title") else None
+#     business_rating = soup.find("span", class_="section-star-display").get_text(strip=True) if soup.find("span", class_="section-star-display") else None
+#     business_reviews = soup.find("button", class_="section-reviewchart-numreviews").get_text(strip=True) if soup.find("button", class_="section-reviewchart-numreviews") else None
 
-    return {
-        "name": business_name,
-        "rating": business_rating,
-        "reviews": business_reviews,
-    }
+#     return {
+#         "name": business_name,
+#         "rating": business_rating,
+#         "reviews": business_reviews,
+#     }
 
 def save_to_file(data, filename):
     with open(filename, "w") as f:
@@ -39,15 +39,15 @@ if st.button("Search and Save"):
     results = google_search(search_query)
     business_data = []
 
-    for result in results:
-        try:
-            data = extract_business_data(result)
-            if data["name"]:
-                business_data.append(data)
-        except Exception as e:
-            st.write(f"Error while processing {result}: {e}")
+    # for result in results:
+    #     try:
+    #         data = extract_business_data(result)
+    #         if data["name"]:
+    #             business_data.append(data)
+    #     except Exception as e:
+    #         st.write(f"Error while processing {result}: {e}")
 
-    if business_data:
+    if results:
         if not os.path.exists("data"):
             os.makedirs("data")
         save_to_file(business_data, f"data/{keyword}_business_data.json")
