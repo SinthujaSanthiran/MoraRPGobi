@@ -2,6 +2,11 @@ import os
 import time
 import streamlit as st
 import requests
+from llama_index import GPTSimpleVectorIndex, SimpleDirectoryReader
+
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 
 def save_html_to_file(content, filename):
     with open(filename, "w", encoding="utf-8") as f:
@@ -36,3 +41,11 @@ if os.path.exists("data"):
         st.write(file)
 else:
     st.write("No 'data' folder found.")
+
+
+
+if st.button("create Index "):
+    documents = SimpleDirectoryReader('data').load_data()
+    index = GPTSimpleVectorIndex.from_documents(documents)
+    response = index.query("based on the popular times what is the expected user count during the spring season")
+    st.write(response)
