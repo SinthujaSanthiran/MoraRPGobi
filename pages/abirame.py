@@ -49,11 +49,13 @@ if st.button("create Index "):
     index = GPTSimpleVectorIndex.from_documents(documents)
     index.save_to_disk('index.json')
     index = GPTSimpleVectorIndex.load_from_disk('index.json')
+    if "index" not in st.session_state:
+        st.session_state.index = index
     st.info("Index created")
 
 
 
 if st.button("Show metrics"):
 
-    response = index.query("based on the popular times what is the expected user count during the spring season")
+    response = st.session_state.index.query("based on the popular times what is the expected user count during the spring season")
     st.write(response.response)
