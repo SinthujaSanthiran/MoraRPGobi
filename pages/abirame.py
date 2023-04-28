@@ -54,8 +54,8 @@ if st.button("create Index "):
     st.info("Index created")
 
 
-
+inp = st.text_input("enter the query")
 if st.button("Show metrics"):
 
-    response = st.session_state.index.query("what are the popular times for most of the businesses")
+    response = st.session_state.index.query(inp)
     st.write(response.response)
