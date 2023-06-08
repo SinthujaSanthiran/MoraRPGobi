@@ -10,9 +10,11 @@ llm = OpenAI()
 PandasAIReader = download_loader("PandasAIReader")
 loader = PandasAIReader(llm=llm)
 
+
+st.subheader("Customized Personal ChatBot")
 # Define the path to your CSV file
 # file_path = Path('Preprocessingdata.csv')
-patj = os.path.join('data','Dataset.csv')
+patj = os.path.join('data','PreprocessedData (1).csv')
 # st.write(patj)
 # Read the CSV file into a pandas DataFrame
 df = pd.read_csv(patj)

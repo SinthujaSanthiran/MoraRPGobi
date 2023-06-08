@@ -9,6 +9,7 @@ import os
 llm = OpenAI()
 PandasAIReader = download_loader("PandasAIReader")
 loader = PandasAIReader(llm=llm)
+st.subheader("Sentimental Analysis-chat")
 
 # Define the path to your CSV file
 # file_path = Path('Preprocessingdata.csv')

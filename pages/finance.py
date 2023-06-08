@@ -7,6 +7,9 @@ from pandasai.llm.openai import OpenAI
 llm = OpenAI()
 PandasAIReader = download_loader("PandasAIReader")
 loader = PandasAIReader(llm=llm)
+
+st.subheader("Finance Forecast and analysis- Chat")
+
 uploaded_file = st.file_uploader("Upload CSV", type=['csv'])
 
 if uploaded_file is not None:
