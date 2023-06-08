@@ -15,7 +15,7 @@ loader = PandasAIReader(llm=llm)
 patj = os.path.join('data','Dataset.csv')
 st.write(patj)
 # Read the CSV file into a pandas DataFrame
-df = pd.read_csv()
+df = pd.read_csv(patj)
 
 # Display the DataFrame
 st.write(df)
