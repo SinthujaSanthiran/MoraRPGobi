@@ -13,9 +13,9 @@ from llama_index.query_engine import RetrieverQueryEngine
 
 
 if st.button("load"):
-    AsyncWebPageReader = download_loader("AsyncWebPageReader")
+    # AsyncWebPageReader = download_loader("AsyncWebPageReader")
 
-    loader = AsyncWebPageReader()
+    # loader = AsyncWebPageReader()
 
     links = st.selectbox("select",['https://www.thepythoncode.com/article/extract-google-trends-data-in-python'])
 
