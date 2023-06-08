@@ -10,12 +10,13 @@ from llama_index.retrievers import VectorIndexRetriever
 from llama_index.query_engine import RetrieverQueryEngine
 
 
-AsyncWebPageReader = download_loader("AsyncWebPageReader")
-
-loader = AsyncWebPageReader()
 
 
 if st.button("load"):
+    AsyncWebPageReader = download_loader("AsyncWebPageReader")
+
+    loader = AsyncWebPageReader()
+
     links = st.selectbox("select",['https://www.thepythoncode.com/article/extract-google-trends-data-in-python'])
 
     documents = loader.load_data(urls=links)
