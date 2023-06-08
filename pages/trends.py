@@ -49,5 +49,5 @@ else:
 # Assuming you want to use the AI to answer questions based on the fetched data
 query = st.text_input("Enter your question")
 if query and 'data' in st.session_state:
-    response = loader.run_pandas_ai(st.session_state.data, query, is_conversational_answer=False)
-    st.write(response.text)
+    response = loader.run_pandas_ai(st.session_state.data, query, is_conversational_answer=True)
+    st.write(response)
