@@ -6,3 +6,4 @@ beautifulsoup4
 llama-index
 pytrends 
 pandas
+pandasai
