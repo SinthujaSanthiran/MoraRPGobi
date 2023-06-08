@@ -4,3 +4,5 @@ PyMuPdf
 googlesearch-python
 beautifulsoup4
 llama-index
+pytrends 
+pandas
