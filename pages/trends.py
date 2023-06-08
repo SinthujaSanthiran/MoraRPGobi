@@ -6,7 +6,7 @@ import pandas as pd
 pytrends = TrendReq(hl='en-US', tz=360)
 
 # List of initial keywords
-initial_keywords = ['Kite surfing Galle', 'Scuba diving Galle']
+initial_keywords = ['Galle Tourism', 'Galle', 'Hotels Galle', 'Resorts Galle Srilanka','Srilanka Tourist locations']
 
 # Create a sidebar for keyword selection
 selected_keywords = st.multiselect('Select existing keywords', initial_keywords)
