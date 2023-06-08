@@ -12,7 +12,7 @@ initial_keywords = ['Kite surfing Galle', 'Scuba diving Galle']
 selected_keywords = st.multiselect('Select existing keywords', initial_keywords)
 
 # Allow additional keywords to be added
-additional_keyword = st.sidebar.text_input("Add a new keyword")
+additional_keyword = st.text_input("Add a new keyword")
 if additional_keyword:
     selected_keywords.append(additional_keyword)
 
