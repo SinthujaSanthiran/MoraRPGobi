@@ -9,7 +9,7 @@ PandasAIReader = download_loader("PandasAIReader")
 loader = PandasAIReader(llm=llm)
 
 # Define the path to your CSV file
-file_path = Path('data/Dataset.csv')
+file_path = Path('./data/your_file_name.csv')
 
 # Read the CSV file into a pandas DataFrame
 df = pd.read_csv(file_path)
