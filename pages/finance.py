@@ -13,7 +13,7 @@ AsyncWebPageReader = download_loader("AsyncWebPageReader")
 
 loader = AsyncWebPageReader()
 
-links = st.multiselect("select",links)
+links = st.multiselect("select",['https://www.thepythoncode.com/article/extract-google-trends-data-in-python'])
 
 if st.button("load"):
     documents = loader.load_data(urls=links)
