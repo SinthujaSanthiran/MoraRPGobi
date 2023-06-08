@@ -12,9 +12,10 @@ loader = PandasAIReader(llm=llm)
 
 # Define the path to your CSV file
 # file_path = Path('Preprocessingdata.csv')
-
+patj = os.path.join('data','Dataset.csv')
+st.write(patj)
 # Read the CSV file into a pandas DataFrame
-df = pd.read_csv(os.path.join('data','Dataset.csv'))
+df = pd.read_csv()
 
 # Display the DataFrame
 st.write(df)
