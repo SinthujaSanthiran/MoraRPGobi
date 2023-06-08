@@ -20,7 +20,7 @@ if uploaded_file is not None:
     # df.to_csv(file_path, index=False)
 
     # Use the loader to load the data from the CSV file
-    documents = loader.load_data(file=Path(file_path))
+    # documents = loader.load_data(file=Path(file_path))
 
     # Display the DataFrame
     st.write(df)
