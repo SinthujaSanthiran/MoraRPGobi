@@ -16,7 +16,7 @@ loader = AsyncWebPageReader()
 
 
 if st.button("load"):
-    links = st.selectbo("select",['https://www.thepythoncode.com/article/extract-google-trends-data-in-python'])
+    links = st.selectbox("select",['https://www.thepythoncode.com/article/extract-google-trends-data-in-python'])
 
     documents = loader.load_data(urls=links)
 
