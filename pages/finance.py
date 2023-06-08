@@ -1,40 +1,34 @@
-from llama_index import download_loader
-import os
-import time
 import streamlit as st
-import requests
-from llama_index import VectorStoreIndex, SimpleDirectoryReader
-import openai
+from pathlib import Path
+from llama_index import download_loader
+from pandasai.llm.openai import OpenAI
 
-from llama_index.retrievers import VectorIndexRetriever
-from llama_index.query_engine import RetrieverQueryEngine
+# Initialize the AI
+llm = OpenAI()
+PandasCSVReader = download_loader("PandasCSVReader")
+loader = PandasCSVReader(llm=llm)
 
+uploaded_file = st.file_uploader("Upload CSV", type=['csv'])
 
+if uploaded_file is not None:
+    # Convert the uploaded file to a BytesIO object and read it into a pandas DataFrame
+    import io
+    import pandas as pd
+    df = pd.read_csv(io.BytesIO(uploaded_file.read()))
 
+    # Save the DataFrame to a CSV file
+    file_path = './uploaded.csv'
+    df.to_csv(file_path, index=False)
 
-if st.button("load"):
-    # AsyncWebPageReader = download_loader("AsyncWebPageReader")
+    # Use the loader to load the data from the CSV file
+    documents = loader.load_data(file=Path(file_path))
 
-    # loader = AsyncWebPageReader()
+    # Display the DataFrame
+    st.write(df)
 
-    links = st.selectbox("select",['https://www.thepythoncode.com/article/extract-google-trends-data-in-python'])
+    # Get a question from the user
+    query = st.text_input("Enter your question")
 
-    documents = loader.load_data(urls=links)
-
-
-index = VectorStoreIndex.from_documents(documents)
-query_engine = RetrieverQueryEngine(
-    retriever=retriever,
-    response_synthesizer=response_synthesizer,
-)
-
-retriever = VectorIndexRetriever(
-    index=index, 
-    similarity_top_k=2,
-)
-
-
-questi = st.text_input("Enter question")
-if st.button("ask bot"):
-    reso = query_engine.query(questi)
-    st.write(reso)
+    if query:
+        response = loader.run_pandas_ai(df, query, is_conversational_answer=False)
+        st.write(response)
