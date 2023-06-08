@@ -10,11 +10,11 @@ pytrends = TrendReq(hl='en-US', tz=360)
 # List of initial keywords
 initial_keywords = ['Galle Tourism', 'Galle', 'Hotels Galle', 'Resorts Galle Srilanka','Srilanka', 'Tourist', 'locations']
 
-# Create a sidebar for keyword selection
-selected_keywords = st.sidebar.multiselect('Select existing keywords', initial_keywords)
+# Create a for keyword selection
+selected_keywords = st.multiselect('Select existing keywords', initial_keywords)
 
 # Allow additional keywords to be added
-additional_keyword = st.sidebar.text_input("Add a new keyword")
+additional_keyword = st.text_input("Add a new keyword")
 if additional_keyword:
     selected_keywords.append(additional_keyword)
 
