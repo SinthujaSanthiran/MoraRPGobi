@@ -17,7 +17,7 @@ if additional_keyword:
     selected_keywords.append(additional_keyword)
 
 # When keywords are selected, fetch data from Google Trends and display it
-if st.multiselect('Fetch Google Trends data for selected keywords',selected_keywords),:
+if st.multiselect('Fetch Google Trends data for selected keywords',selected_keywords):
     # Define the payload
     kw_list = selected_keywords
 
