@@ -1,6 +1,7 @@
 import streamlit as st
 from pathlib import Path
 from llama_index import download_loader
+import pandas as pd
 from pandasai.llm.openai import OpenAI
 
 # Initialize the AI
