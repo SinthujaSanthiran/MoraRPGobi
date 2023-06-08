@@ -6,7 +6,7 @@ from pandasai.llm.openai import OpenAI
 # Initialize the AI
 llm = OpenAI()
 PandasCSVReader = download_loader("PandasCSVReader")
-loader = PandasCSVReader(llm=llm)
+loader = PandasCSVReader()
 
 uploaded_file = st.file_uploader("Upload CSV", type=['csv'])
 
