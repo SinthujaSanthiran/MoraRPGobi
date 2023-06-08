@@ -38,5 +38,5 @@ if "index" not in st.session_state:
 
 questi = st.text_input("Enter question")
 if st.button("ask bot"):
-    reso = st.session_state.index.query(questi)
+    reso = query_engine.query(questi)
     st.write(reso)
