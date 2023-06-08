@@ -30,11 +30,7 @@ retriever = VectorIndexRetriever(
     index=index, 
     similarity_top_k=2,
 )
-# index.save_to_disk('index.json')
-# index = VectorStoreIndex.load_from_disk('index.json')
-if "index" not in st.session_state:
-    st.session_state.index = index
-    st.info("Index created")
+
 
 questi = st.text_input("Enter question")
 if st.button("ask bot"):
