@@ -12,7 +12,10 @@ import openai
 AsyncWebPageReader = download_loader("AsyncWebPageReader")
 
 loader = AsyncWebPageReader()
-documents = loader.load_data(urls=['https://www.thepythoncode.com/article/extract-google-trends-data-in-python','https://llamahub.ai/'])
+
+links = st.multiselect("select",links)
+
+documents = loader.load_data(urls=links)
 
 
 index = VectorStoreIndex.from_documents(documents)
