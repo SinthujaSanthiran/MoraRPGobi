@@ -6,7 +6,8 @@ import requests
 from llama_index import VectorStoreIndex, SimpleDirectoryReader
 import openai
 
-
+from llama_index.retrievers import VectorIndexRetriever
+from llama_index.query_engine import RetrieverQueryEngine
 
 
 AsyncWebPageReader = download_loader("AsyncWebPageReader")
@@ -15,11 +16,20 @@ loader = AsyncWebPageReader()
 
 links = st.multiselect("select",['https://www.thepythoncode.com/article/extract-google-trends-data-in-python'])
 
-if links:
+if st.button("load"):
     documents = loader.load_data(urls=links)
 
 
 index = VectorStoreIndex.from_documents(documents)
+query_engine = RetrieverQueryEngine(
+    retriever=retriever,
+    response_synthesizer=response_synthesizer,
+)
+
+retriever = VectorIndexRetriever(
+    index=index, 
+    similarity_top_k=2,
+)
 # index.save_to_disk('index.json')
 # index = VectorStoreIndex.load_from_disk('index.json')
 if "index" not in st.session_state:
