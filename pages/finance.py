@@ -29,5 +29,5 @@ if uploaded_file is not None:
     query = st.text_input("Enter your question")
 
     if query:
-        response = loader.run_pandas_ai(df, query, is_conversational_answer=False)
+        response = loader.run_pandas_ai(df, query, is_conversational_answer=True)
         st.write(response)
