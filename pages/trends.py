@@ -9,7 +9,7 @@ pytrends = TrendReq(hl='en-US', tz=360)
 initial_keywords = ['Kite surfing Galle', 'Scuba diving Galle']
 
 # Create a sidebar for keyword selection
-selected_keywords = st.sidebar.multiselect('Select existing keywords', initial_keywords)
+selected_keywords = st.multiselect('Select existing keywords', initial_keywords)
 
 # Allow additional keywords to be added
 additional_keyword = st.sidebar.text_input("Add a new keyword")
@@ -17,7 +17,7 @@ if additional_keyword:
     selected_keywords.append(additional_keyword)
 
 # When keywords are selected, fetch data from Google Trends and display it
-if st.multiselect('Fetch Google Trends data for selected keywords'):
+if st.multiselect('Fetch Google Trends data for selected keywords',selected_keywords),:
     # Define the payload
     kw_list = selected_keywords
 
