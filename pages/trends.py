@@ -22,7 +22,7 @@ if st.multiselect('Fetch Google Trends data for selected keywords',selected_keyw
     kw_list = selected_keywords
 
     # Get Google Trends data
-    pytrends.build_payload(kw_list, timeframe='today 5-y', geo='', gprop='')
+    pytrends.build_payload(kw_list, timeframe='all')
 
     # Get interest over time
     data = pytrends.interest_over_time()
