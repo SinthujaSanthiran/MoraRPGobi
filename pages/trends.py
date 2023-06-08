@@ -29,20 +29,25 @@ if st.button('Fetch Google Trends data for selected keywords'):
     kw_list = selected_keywords
 
     # Get Google Trends data
-    pytrends.build_payload(kw_list, timeframe='all')
+    pytrends.build_payload(kw_list, timeframe='today 5-y')
 
     # Get interest over time
     data = pytrends.interest_over_time()
     if not data.empty:
         data = data.drop(labels=['isPartial'],axis='columns')
 
+        # Save the data to the session state
+        st.session_state.data = data
+
+        st.write(data)
+else:
+    # If the data is already in the session state, load it
+    if 'data' in st.session_state:
+        data = st.session_state.data
         st.write(data)
 
-        # Assuming you want to use the AI to answer questions based on the fetched data
-        query = st.text_input("Enter your question")
-        if query:
-            response = loader.run_pandas_ai(data, query, is_conversational_answer=False)
-            st.write(response)
-
-    else:
-        st.write('The selected keywords do not have enough data to display a trend.')
+# Assuming you want to use the AI to answer questions based on the fetched data
+query = st.text_input("Enter your question")
+if query and 'data' in st.session_state:
+    response = loader.run_pandas_ai(st.session_state.data, query, is_conversational_answer=False)
+    st.write(response)
