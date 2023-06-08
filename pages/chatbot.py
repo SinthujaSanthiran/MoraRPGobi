@@ -3,6 +3,7 @@ from pathlib import Path
 from llama_index import download_loader
 import pandas as pd
 from pandasai.llm.openai import OpenAI
+import os
 
 # Initialize the AI
 llm = OpenAI()
