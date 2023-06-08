@@ -15,7 +15,8 @@ loader = AsyncWebPageReader()
 
 links = st.multiselect("select",links)
 
-documents = loader.load_data(urls=links)
+if st.button("load"):
+    documents = loader.load_data(urls=links)
 
 
 index = VectorStoreIndex.from_documents(documents)
